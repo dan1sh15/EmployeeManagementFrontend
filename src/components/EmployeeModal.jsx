@@ -5,7 +5,7 @@ import { AppContext } from '../Context/AppContext';
 const EmployeeModal = (props) => {
     const { editEmployee, setEditEmployee, setShowModal  } = props;
 
-    const { fetchEmployeeData } = useContext(AppContext);
+    const { fetchEmployeeData, setLoading } = useContext(AppContext);
 
     const changeHandler = (event) => {
         setEditEmployee( prevFormData => {
@@ -20,7 +20,7 @@ const EmployeeModal = (props) => {
         event.preventDefault();
         const url = process.env.REACT_APP_BACKEND_URL;
         try {
-          
+            setLoading(true);
           const updatedEmployee = await fetch(`${url}/updateEmployee/${editEmployee._id}`, {
             method: "PUT",
             headers: {
@@ -30,15 +30,18 @@ const EmployeeModal = (props) => {
           });
 
           if(updatedEmployee.ok) {
+            setLoading(false);
             toast.success("Employee details updated successfully");
             setShowModal(false);
             fetchEmployeeData();
           } else {
+            setLoading(false);
             toast.error("Cannot update employee details");
             setShowModal(false);
           }
 
         } catch (error) {
+          setLoading(false);
           console.log(error);
           toast.error(error);
           setShowModal(false);
