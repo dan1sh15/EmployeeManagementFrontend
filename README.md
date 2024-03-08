@@ -1,7 +1,6 @@
 # Live Project Link here
   Project hosted on: [Employee Management App](https://employeemanagement-mern.netlify.app/)
-# Back end link
-  [Backend](https://github.com/dan1sh15/EmployeeManagementBackend)
+# Back end link [Backend](https://github.com/dan1sh15/EmployeeManagementBackend)
 
 # Getting Started with Create React App
 
