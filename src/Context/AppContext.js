@@ -1,32 +1,63 @@
 import { createContext, useState } from 'react';
-import Toast from 'react-hot-toast';
+import Toast, { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 // create context
 export const AppContext = createContext();
 
 function AppContextProvider( { children } ) {
     const [loading, setLoading] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(false);
     const [employeeData, setEmployeeData] = useState([]);
+    const [adminDetails, setAdminDetails] = useState({});
+
+    const navigate = useNavigate();
+
+    const fetchUserDetails = async () => {
+        const url = process.env.REACT_APP_BACKEND_URL + '/getUserDetails';
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "auth-token": localStorage.getItem('token')
+            }
+        });
+
+        const responseData = await response.json();
+
+        if(responseData.success) {
+            setAdminDetails(responseData.user);
+        } else {
+            Toast.error(responseData.message);
+        }
+    }
 
     const fetchEmployeeData = async () => {
         const url = process.env.REACT_APP_BACKEND_URL + '/getAllEmployee';
         try {
             setLoading(true);
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    'auth-token': localStorage.getItem('token')
+                }
+            });
+            const responseData = await response.json();
 
-            if(response.ok) {
-                const res = await response.json();
-                setEmployeeData(res.data);
-                Toast.success("Data fetched successfully");
-            } else {
-                Toast.error("Error fetching data");
+            if(responseData.success) {
+                setEmployeeData(responseData.data);
+            }
+            else if(responseData.message === "Invalid token") {
+                Toast.error(responseData.message);
+                setLoggedIn(false);
+                navigate('/login');
+            } 
+            else {
+                console.log("Else condition");
+                Toast.error(responseData.message);
             }
             setLoading(false);
 
         } catch (error) {
-            console.error(error);
-            console.log(error);
-            console.log("Error fetching data");
             Toast.error("Error fetching data");
             setLoading(false);
         }
@@ -37,7 +68,12 @@ function AppContextProvider( { children } ) {
         setLoading,
         employeeData,
         setEmployeeData,
-        fetchEmployeeData
+        fetchEmployeeData,
+        loggedIn,
+        setLoggedIn,
+        adminDetails,
+        setAdminDetails,
+        fetchUserDetails
     };
 
     return <AppContext.Provider value={value}>

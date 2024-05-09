@@ -6,7 +6,6 @@ import { MdDelete } from 'react-icons/md';
 const PhoneUser = (props) => {
     const { phoneEmployee, setPhoneComponent, editHandler, handleDelete } = props;
     const imgUrl = process.env.REACT_APP_IMG_URL;
-    console.log(phoneEmployee);
     const clickHandler = () => {
         setPhoneComponent(false);
     }
