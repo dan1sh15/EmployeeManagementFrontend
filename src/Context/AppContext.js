@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import Toast, { toast } from 'react-hot-toast';
+import Toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 // create context

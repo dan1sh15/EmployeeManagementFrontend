@@ -148,7 +148,7 @@ const AddEmployee = () => {
                           </legend>
 
                           <div className='flex gap-x-5'>
-                              <div className='flex items-center gap-x-2'>
+                              <div className='flex items-center gap-x-2 flex-wrap'>
                                   <label className='text-lg flex gap-x-2 cursor-pointer max-phone:text-xs'>
                                       Male
                                     <input onChange={handleGenderChange} type="radio" name='gender' checked={gender === 'Male'} value='Male' className='border cursor-pointer px-3 py-2 rounded-lg max-phone:text-xs max-phone:placeholder:text-xs bg-[#2e3144]' /> 
@@ -162,7 +162,7 @@ const AddEmployee = () => {
                           </div>
                       </fieldset>
 
-                      <fieldset className='flex border-2 p-3 bg-[#2e3144] rounded-lg gap-x-5'>
+                      <fieldset className='flex flex-wrap border-2 p-3 bg-[#2e3144] rounded-lg gap-x-5'>
                         <legend>Courses</legend>
                         <div className='flex items-center gap-x-2 '>
                             <label htmlFor="bca" className='text-lg max-phone:text-xs cursor-pointer'>BCA</label>
@@ -202,7 +202,7 @@ const AddEmployee = () => {
                         </div>
                       </fieldset>
 
-                      <div className='flex flex-col gap-y-2'>
+                      <div className='flex flex-col gap-y-2 max-lg:text-lg max-sm:text-sm max-phone:text-xs'>
                           <label htmlFor="image">Image</label>
                           <input 
                             type="file" 

@@ -20,7 +20,7 @@ const Home = () => {
     }, []);
 
   return (
-    <div className={`w-10/12 py-[10vh] max-phone:w-full  text-[#e5e4e8] px-3 mx-auto poppins`}>
+    <div className={`w-10/12 max-xl:w-full py-[12vh] max-phone:w-full  text-[#e5e4e8] px-3 mx-auto poppins`}>
         <div className='flex w-full py-5 justify-between max-[250px]:items-center max-sm:items-end items-center max-sm:flex-col max-sm:gap-y-3 max-phone:gap-y-5'>
             <div className='w-[70%] max-sm:w-[100%]'>
                 <h1 className='text-2xl max-xl:text-xl max-phone:text-[1.5rem] font-bold tracking-wide'>

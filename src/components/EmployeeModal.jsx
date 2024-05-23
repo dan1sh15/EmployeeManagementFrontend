@@ -165,7 +165,7 @@ const EmployeeModal = (props) => {
                 </legend>
 
                 <div className='flex gap-x-5'>
-                    <div className='flex items-center gap-x-2'>
+                    <div className='flex items-center gap-x-2 flex-wrap'>
                         <label className='text-lg flex gap-x-2 cursor-pointer max-phone:text-xs'>
                             Male
                           <input onChange={handleGenderChange} type="radio" name='gender' checked={newGender === 'Male'} value='Male' className='border cursor-pointer px-3 py-2 rounded-lg max-phone:text-xs max-phone:placeholder:text-xs bg-[#2e3144]' /> 
@@ -179,9 +179,9 @@ const EmployeeModal = (props) => {
                 </div>
             </fieldset>
 
-            <fieldset className='flex border-2 p-3 bg-[#2e3144] rounded-lg gap-x-5'>
+            <fieldset className='flex border-2 flex-wrap p-3 bg-[#2e3144] rounded-lg gap-x-5'>
               <legend>Courses</legend>
-              <div className='flex items-center gap-x-2 '>
+              <div className='flex items-center gap-x-2'>
                   <label htmlFor="bca" className='text-lg max-phone:text-xs cursor-pointer'>BCA</label>
                   <input 
                     type="checkbox"
@@ -229,7 +229,7 @@ const EmployeeModal = (props) => {
           {
               !showFileUpdate ? (<div onClick={() => {
                 setShowFileUpdate(true);
-              }} className='w-full bg-[#2e3144] text-center p-3 rounded-lg text-xl border-2 border-[#e5e4e8] cursor-pointer'>
+              }} className='w-full bg-[#2e3144] text-center p-3 rounded-lg max-lg:text-lg max-sm:text-sm text-xl border-2 border-[#e5e4e8] cursor-pointer'>
                   Update Employee Profile Image?
                 </div>) : (
                 <div className='flex flex-col gap-y-2'>

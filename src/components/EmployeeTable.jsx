@@ -117,24 +117,24 @@ const EmployeeTable = (props) => {
 
                     <div className='flex w-full flex-col gap-y-5'>
                       <div className='flex w-full justify-end'>
-                          <div className='flex gap-x-3 items-center'>
-                            <label htmlFor="search" className='text-lg max-phone:text-xs'>Search</label>
+                          <div className='flex gap-x-3 items-center max-[350px]:flex-col max-[350px]:gap-y-3 max-[350px]:w-full'>
+                            <label htmlFor="search" className='text-lg max-[350px]:hidden max-xl:text-sm max-phone:text-xs'>Search</label>
                             <input 
                               type="text"
                               name='search'
-                              className='border outline-none px-3 py-2 max-phone:text-xs max-phone:placeholder:text-xs rounded-lg bg-[#2e3144]'
+                              className='border outline-none px-3 py-2 max-phone:text-xs max-lg:text-sm max-lg:placeholder:text-sm max-[350px]:w-full  max-phone:placeholder:text-xs rounded-lg bg-[#2e3144]'
                               placeholder='Enter search keyword'
                               value={searchKey}
                               onChange={changeHandler}
                             />
 
-                            <button onClick={handleSearch} className='bg-[#2e2fe8] text-xl p-2 rounded-lg'>
-                              <IoSearch />
+                            <button onClick={handleSearch} className='bg-[#2e2fe8] text-center max-[350px]:w-full text-xl max-lg:text-lg max-sm:text-sm p-2 rounded-lg max-[350px]:flex max-[350px]:items-center max-[350px]:justify-center max-[350px]:gap-x-3'>
+                              <span className='text-xs min-[350px]:hidden'>Search</span><IoSearch />
                             </button>
                           </div>
                       </div>
-                      <table className='w-full max-phone:mx-auto max-phone:rounded-lg max-phone:h-[100%] max-phone:w-[80%] border'>
-                        <thead className='bg-[#272937] max-xl:text-lg max-lg:text-sm text-lf h-auto ipad:h-10 tracking-wide max-phone:text-[0.75rem]'>
+                      <table className='w-full max-phone:mx-auto max-phone:rounded-lg max-phone:h-[100%] max-phone:w-[90%] border'>
+                        <thead className='bg-[#272937] max-xl:text-sm text-lf h-auto ipad:h-10 tracking-wide max-phone:text-[0.75rem]'>
                             <tr>
                               <th className='border'>Unique Id</th>
                               <th className='border max-phone:hidden'>Image</th>
@@ -154,7 +154,7 @@ const EmployeeTable = (props) => {
                                     </div>
                                 </div>
                               </th>
-                              <th className='border max-phone:hidden'>
+                              <th className='border max-phone:hidden max-lg:hidden'>
                                   <div className='flex w-fit mx-auto items-center gap-x-2'>
                                       <p>Mobile No.</p>
                                       <div onClick={handleMobileSort} title='Sort' className='cursor-pointer p-1 rounded-full bg-[#e5e4e8]'>
@@ -162,10 +162,10 @@ const EmployeeTable = (props) => {
                                       </div>
                                   </div>
                               </th>
-                              <th className='border max-phone:hidden'>Designation</th>
-                              <th className='border max-phone:hidden'>Gender</th>
-                              <th className='border max-phone:hidden'>Course</th>
-                              <th className='border max-phone:hidden'>Create date</th>
+                              <th className='border max-lg:hidden'>Designation</th>
+                              <th className='border max-lg:hidden'>Gender</th>
+                              <th className='border max-lg:hidden'>Course</th>
+                              <th className='border max-lg:hidden'>Create date</th>
                               <th className='border max-phone:hidden'>Action</th>
                             </tr>
                         </thead>
@@ -173,28 +173,29 @@ const EmployeeTable = (props) => {
                         <tbody className='w-full border max-phone:text-[0.75rem]'>
                             {
                                 employeeData.map((employee, idx) => (
-                                  <tr key={idx} className='w-full border text-center max-phone:text-[0.75rem] max-sm:text-xs  h-auto ipad:h-10 max-xl:text-lg max-lg:text-sm text-lg'>
+                                  <tr key={idx} className='w-full border text-center max-phone:text-[0.75rem] max-sm:text-xs  h-auto ipad:h-10 max-xl:text-sm text-lg'>
                                     <td className='border-r'>{idx+1}</td>
                                     <td className='max-phone:hidden border'>
                                       <div className='flex items-center justify-center'>
-                                        <img className='rounded-full cover h-[45px] w-[45px]' src={employee?.image} alt="" />  
+                                        <img className='rounded-full cover max-ipad:h-[30px] max-ipad:w-[30px] h-[45px] w-[45px]' src={employee?.image} alt="" />  
                                       </div>
                                     </td>
                                     <td className='
                                       max-phone:border-none
-                                      border-r flex items-center max-phone:justify-between max-phone:text-left max-phone:leading-snug h-10 max-phone:px-1
+                                      justify-center
+                                      border-r flex items-center max-phone:justify-between max-phone:text-left gap-x-5 max-phone:leading-snug h-10 max-phone:px-1
                                       '>
                                       {employee?.name} 
                                       <RiUserSearchFill
                                       onClick={() => phoneComponentHandler(employee)} 
-                                      className='text-[0.75rem] phone:hidden cursor-pointer hover' title='Show Details' />
+                                      className='text-[0.75rem] lg:hidden cursor-pointer hover' title='Show Details' />
                                     </td>
                                     <td className='border-r max-phone:hidden'>{employee?.email}</td>
-                                    <td className='border-r max-phone:hidden'>{employee?.mobileNumber}</td>
-                                    <td className='border-r max-phone:hidden'>{employee?.designation}</td>
-                                    <td className='border-r max-phone:hidden'>{employee?.gender}</td>
-                                    <td className='border-r max-phone:hidden'>{employee?.course}</td>
-                                    <td className='border-r max-phone:hidden'>{employee?.createdAt}</td>
+                                    <td className='border-r max-lg:hidden'>{employee?.mobileNumber}</td>
+                                    <td className='border-r max-lg:hidden'>{employee?.designation}</td>
+                                    <td className='border-r max-lg:hidden'>{employee?.gender}</td>
+                                    <td className='border-r max-lg:hidden'>{employee?.course}</td>
+                                    <td className='border-r max-lg:hidden'>{employee?.createdAt}</td>
                                     <td className=' flex px-3 max-phone:hidden justify-between items-center phone:h-10'>
                                       <div  className='text-center w-full'>
                                       {employee.role}
